@@ -17,7 +17,7 @@ service = Service(chromedriver_path)
 driver = webdriver.Chrome(service=service)
 
 # Get the current date in the format "YYYY-MM-DD"
-# current_date = datetime.now().strftime("%Y-%m-%d")
+current_date = datetime.now().strftime("%Y-%m-%d")
 
 # URL you want to scrape
 for i in range(10, 32):
@@ -35,7 +35,6 @@ for i in range(10, 32):
   # Wait for the page to load (n seconds)
     time.sleep(3)
 
-
   # Find all buttons with the specified HTML tag and click them
   buttons = driver.find_elements(By.XPATH, "//a[@id='section-toggle' and @role='button']")
   for button in buttons:
@@ -44,31 +43,11 @@ for i in range(10, 32):
       time.sleep(.1)  # Wait a bit for the content to load
     except Exception as e:
       print(f"Could not click button: {e}")
-  # List of button texts to click
-  # buttons_to_click = [
-  #   "Beverages", "Breads & Spreads", "Burger Bar", "Cereal", "Condiments", 
-  #   "Deli Bar", "Delights", "Family Table", "Fire Up", "Flavors Abroad", 
-  #   "Fruit & Yogurt", "Frozen Yogurt Bar", "Gluten Free", "Salad Bar", 
-  #   "Sprouts", "Za!"
-  # ]
-
-  # # Click each button
-  # for button_text in buttons_to_click:
-  #   try:
-  #     button = WebDriverWait(driver, 5).until(
-  #       EC.element_to_be_clickable((By.XPATH, f"//a[@id='section-toggle' and contains(text(), '{button_text}')]"))
-  #     )
-  #     button.click()
-  #     time.sleep(.1)  # Wait a bit for the content to load
-  #   except Exception as e:
-  #     print(f"Could not click button with text '{button_text}': {e}")
 
   # Get the page source
   page_source = driver.page_source
 
-
   # Save the HTML content to a file
-
   with open('Iowa.html', 'w', encoding='utf-8') as file:
     file.write(page_source)
 
